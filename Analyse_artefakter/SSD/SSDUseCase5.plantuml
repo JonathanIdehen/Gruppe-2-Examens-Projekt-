@@ -1,0 +1,33 @@
+@startuml
+title UC5 - Se oversigt over opgaver
+
+hide footbox
+<style>
+element {  
+    BackGroundColor: #ded7d7;
+}
+
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+
+}
+</style>
+
+actor ":Chef/Souschef" as M
+participant ":System" as S
+
+M -> S: vælgOversigtOverOpgaver()
+|||
+S --> M: Samlet liste over opgaver
+|||
+M -> S: vælgStatus,MedarbejderEllerDeadline()
+|||
+S --> M: Opdatering af oversigten
+|||
+S --> M: Overblik over relevante opgaver
+
+
+@enduml
