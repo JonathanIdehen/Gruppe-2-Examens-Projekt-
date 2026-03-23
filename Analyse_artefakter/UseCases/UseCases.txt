@@ -1,0 +1,93 @@
+## UC1:
+
+**Titel:** Opret opgave
+
+**Primær aktør:** Chef/Souschef
+
+**Aktør mål:** At oprette en opgave.
+
+**Hovedscenarie:**
+
+1. Chef/Souschef vælger “Opret opgave”.
+2. Systemet viser en formular til oprettelse af en ny opgave.
+3. Chef/Souschef vælger kategori.
+4. Chef/Souschef indtaster titel og beskrivelse.
+5. Chef/Souschef angiver deadline og prioritet.
+6. Chef/Souschef gemmer opgaven.
+7. Systemet opretter opgaven med status “Afventer”.
+8. Systemet viser, at opgaven er oprettet.
+
+## UC2:
+
+**Titel:** Vælg eksisterende opgave
+
+**Primær aktør:** Chef/Souschef
+
+**Aktør mål:** Vælge en eksisterende opgave og tilknytte en medarbejder.
+
+**Hovedscenarie:**
+
+1. Chef/Souschef vælger “Vælg eksisterende opgave”.
+2. Systemet viser en liste over tidligere opgaver.
+3. Chef/Souschef vælger en opgave.
+4. Systemet viser en medarbejderliste
+5. Chef/Souschef vælger en medarbejder.
+6. Chef/Souschef angiver deadline og prioritet.
+7. Chef/Souschef gemmer opgaven.
+8. Systemet opretter opgaven med status “Afventer”.
+9. Systemet viser, at opgaven er oprettet.
+
+## UC3:
+
+**Titel:** Tildel opgave til medarbejder
+
+**Primær aktør:** Chef/Souschef
+
+**Aktør mål:** Tildele en opgave til en medarbejder 
+
+**Hovedscenarie:**
+
+1. Chef/Souschef vælger “Oversigt over opgaver”.
+2. Systemet viser listen over eksisterende opgaver.
+3. Chef/Souschef vælger en opgave.
+4. Systemet viser opgavens detaljer samt en medarbejderliste.
+5. Chef/Souschef vælger en medarbejder fra listen.
+6. Chef/Souschef gemmer tildelingen.
+7. Systemet registrerer og gemmer at opgaven tildelt medarbejderen.
+
+## UC4:
+
+**Titel:** Opdater status på opgave
+
+**Primær aktør:** Chef/Souschef
+
+**Aktør mål:** At opdatere status på en opgave
+
+**Hovedscenarie:**
+
+1. Medarbejderen vælger “Opgaveliste”
+2. Systemet viser en liste over opgaver.
+3. Medarbejderen vælger en opgave.
+4. Systemet viser en medarbejderliste.
+5. Medarbejderen vælger sit eget navn på listen.
+6. Systemet viser opgavens detaljer.
+7. Medarbejderen vælger en ny status, fx “I gang” eller “Færdig”.
+8. Medarbejderen gemmer ændringen.
+9. Systemet opdaterer opgavens status.
+
+## UC5:
+
+**Titel:** Se oversigt over opgaver
+
+**Primær aktør:** Chef/Souschef
+
+**Aktør mål:** At opdatere status på en opgave
+
+**Hovedscenarie:**
+
+1. Brugeren vælger “Oversigt over opgaver”.
+2. Systemet viser en samlet liste over opgaver.
+3. Brugeren vælger eventuelt filtrering, fx status, medarbejder eller deadline.
+4. Systemet opdaterer visningen ud fra de valgte filtre.
+5. Brugeren får et overblik over relevante opgaver
+
