@@ -1,0 +1,86 @@
+@startuml
+
+hide methods
+hide circles
+skinparam backgroundColor #F5F5F5
+
+skinparam class {
+  BackgroundColor #8BDC8B
+  BorderColor #4F8A52
+  ArrowColor #4F8A52
+  FontColor black
+  RoundCorner 10
+}
+
+package "Maxi Zoo"  {
+
+
+class Værditilbud {
+- Stort udvalg af produkter til kæledyr
+- Faglig rådgivning til kunder
+- God kvalitet
+- Konkurrencedygtige priser
+- Nem adgang - butik og online
+}
+
+class Nøgleaktiviteter {
+- Salg af produkter
+- Kundeservice og rådgivning
+- Lagerstyring
+- Markedsføring
+- Drift af butik
+}
+
+class Nøgleressourcer {
+- Butik i Svendborg
+- Medarbejdere med viden
+- Produktsortiment
+- IT-systemer
+- Brand - Maxi Zoo
+}
+
+class Nøglepartnere {
+- Leverandører af dyrefoder og tilbehør
+- Logistikpartnere
+- Maxi Zoo kæden
+- Online platforme
+}
+
+class Kunderelationer {
+- Personlig service
+- Kundeklub
+- Online support
+- Nyhedsbreve
+}
+
+class Kanaler {
+- Fysisk butik
+- Webshop
+- Sociale medier
+- Click & collect
+}
+
+class Kundesegmenter {
+- Kæledyrsejere
+- Lokale kunder
+- Pris- og kvalitetsbevidste kunder
+}
+
+class Omkostningsstruktur {
+- Vareindkøb
+- Lønninger
+- Husleje
+- Markedsføring
+- IT
+}
+
+class Indtægtsstrømme {
+- Salg af foder
+- Salg af tilbehør
+- Premium produkter
+- Online salg
+}
+
+}
+
+@enduml
