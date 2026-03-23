@@ -1,0 +1,29 @@
+@startuml
+hide circle
+hide methods
+
+class Medarbejder {
+  navn
+  rolle
+}
+
+class Opgave {
+  titel
+  beskrivelse
+  deadline
+  prioritet
+}
+
+class Kategori {
+  navn
+}
+
+class Status {
+  navn 
+}
+
+Medarbejder "1" -- "0..*" Opgave
+Kategori "1" -- "0..*" Opgave 
+Status "1" -- "0..*" Opgave 
+
+@enduml
