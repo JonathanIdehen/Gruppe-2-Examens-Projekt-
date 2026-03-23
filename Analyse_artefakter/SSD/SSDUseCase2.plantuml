@@ -1,6 +1,6 @@
 @startuml
 
-title UC1 - Opret opgave
+title UC2 - Vælg eksisterende opgave
 hide footbox
 
 <style>
@@ -18,13 +18,15 @@ sequenceDiagram {
 actor ": Chef" as C
 participant ": System" as S
 
-C -> S: vælgOpretOpgave()
+C -> S: vælgEksisternedeOpgave()
 
-S --> C: viser formular til oprettelse
+S --> C: viser liste over tidligere opgaver
 
-C -> S: vælgKategori()
+C -> S: vælgOpgave()
 
-C -> S: indtastTitelogBeskrivelse()
+S --> C: viser medarbejderliste
+
+C -> S: vælgMedarbejder()
 
 C -> S: angivDeadlineogPrioritet()
 
