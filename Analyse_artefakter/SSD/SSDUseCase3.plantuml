@@ -1,0 +1,35 @@
+@startuml
+
+title UC3 - Tildel opgave til medarbejder
+hide footbox
+
+<style>
+element {
+    BackGroundColor: #dbd7d7;
+}
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+}
+</style>
+
+actor ": Chef" as C
+participant ": System" as S
+
+C -> S: seOpgaver()
+
+S --> C: viser eksiterende opgaver
+
+C -> S: vælgOpgave()
+
+S --> C: viser detaljer om opgaven samt medarbejderliste
+
+C -> S: tildelMedarbejderTilOpgave()
+
+C -> S: gemTildeling()
+
+S --> C: registrerer og gemmer tildelingen af opgaven
+
+@enduml
