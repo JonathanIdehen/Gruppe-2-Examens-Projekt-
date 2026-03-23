@@ -1,0 +1,40 @@
+@startuml
+title UC4 - Opdater status på opgave.
+
+hide footbox
+<style>
+element {  
+    BackGroundColor: #ded7d7;
+}
+
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+
+}
+</style>
+
+actor ":Chef/Souschef" as M
+participant ":System" as S
+
+M -> S: vælgOpgaveListe()
+|||
+S --> M: En liste over opgaver
+|||
+M -> S: vælgOpgave()
+|||
+S --> M: En medarbejderliste
+|||
+M -> S: vælgEgetNavn()
+|||
+S --> M: Opgavens detaljer
+|||
+M -> S: vælgNyStatus()
+|||
+M -> S: gem()
+|||
+S --> M: Opdatering af opgavens status
+
+@enduml
