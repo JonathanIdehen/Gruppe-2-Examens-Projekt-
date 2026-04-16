@@ -4,8 +4,35 @@ using System.Text;
 
 namespace MaxiZoo.Models
 {
+
+    public enum Category
+    {
+        Cleaning,
+        Restocking,
+        Cashier,
+        OrderingProducts
+    }
+
+    public enum Priority
+    {
+        Low,
+        Medium,
+        High
+    }
+
+    public enum Status
+    {
+        NotStarted,
+        InProgress,
+        Completed,
+        Rejected,
+        Done
+
+    }
+
     public class Task
     {
+
         public int TaskID { get; set; }
         public string Title { get; set; } = "";
         public string Description { get; set; } = "";
