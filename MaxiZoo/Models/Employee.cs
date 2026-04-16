@@ -6,7 +6,7 @@ namespace MaxiZoo.Models
 {
     public class Employee
     {
-        public int Id { get; set; }
+        public int EmployeeID { get; set; }
         public string Name { get; set; } = "";
         public Role Role { get; set; }
     }

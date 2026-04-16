@@ -6,7 +6,7 @@ namespace MaxiZoo.Models
 {
     public class Task
     {
-        public int Id { get; set; }
+        public int TaskID { get; set; }
         public string Title { get; set; } = "";
         public string Description { get; set; } = "";
         public DateTime Deadline { get; set; }
@@ -14,6 +14,7 @@ namespace MaxiZoo.Models
         public Priority Priority { get; set; }
         public Category Category { get; set; }
         public Status Status { get; set; }
+        public EmployeeID EmployeeID { get; set; }
 
         public Employee? AssignedEmployee { get; set; }
 
