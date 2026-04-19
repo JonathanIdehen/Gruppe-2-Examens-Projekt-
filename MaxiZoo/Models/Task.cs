@@ -41,9 +41,9 @@ namespace MaxiZoo.Models
         public Priority Priority { get; set; }
         public Category Category { get; set; }
         public Status Status { get; set; }
-        public EmployeeID EmployeeID { get; set; }
 
-        public Employee? AssignedEmployee { get; set; }
+        public int? EmployeeID { get; set; } // Foreign key to Employee
+        public Employee? AssignedEmployee { get; set; } // Navigation/reference property to Employee
 
     }
 }
