@@ -1,15 +1,35 @@
-﻿using System.Configuration;
-using System.Data;
-using System.Windows;
+﻿using System.Windows;
+using MaxiZoo.Persistence;
+using MaxiZoo.Services;
+using MaxiZoo.Stores;
+using MaxiZoo.ViewModels;
+using MaxiZoo.Views;
 
 namespace MaxiZoo
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
-        // 
-    }
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            EmployeeRepository employeeRepository = new EmployeeRepository();
+            CurrentUserStore currentUserStore = new CurrentUserStore();
+            NavigationStore navigationStore = new NavigationStore();
 
+            UserIdentificationService userIdentificationService =
+                new UserIdentificationService(employeeRepository);
+
+            navigationStore.CurrentViewModel =
+                new StartViewModel(userIdentificationService, currentUserStore, navigationStore);
+
+            MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(navigationStore);
+            MainWindow mainWindow = new MainWindow
+            {
+                DataContext = mainWindowViewModel
+            };
+
+            mainWindow.Show();
+
+            base.OnStartup(e);
+        }
+    }
 }

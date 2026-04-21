@@ -13,11 +13,11 @@ using System.Windows.Shapes;
 namespace MaxiZoo.Views
 {
     /// <summary>
-    /// Interaction logic for StartView.xaml
+    /// Interaction logic for EmployeeHomeView.xaml
     /// </summary>
-    public partial class StartView : UserControl
+    public partial class EmployeeHomeView : UserControl
     {
-        public StartView()
+        public EmployeeHomeView()
         {
             InitializeComponent();
         }

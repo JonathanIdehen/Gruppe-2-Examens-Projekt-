@@ -1,10 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MaxiZoo.Stores;
 
 namespace MaxiZoo.ViewModels
 {
-    class MainWindowViewModel
+    public class MainWindowViewModel : BaseViewModel
     {
+        private readonly NavigationStore _navigationStore;
+
+        public BaseViewModel? CurrentViewModel => _navigationStore.CurrentViewModel;
+
+        public MainWindowViewModel(NavigationStore navigationStore)
+        {
+            _navigationStore = navigationStore;
+            _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
+        }
+
+        private void OnCurrentViewModelChanged()
+        {
+            OnPropertyChanged(nameof(CurrentViewModel));
+        }
     }
 }
