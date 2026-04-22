@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using MaxiZoo.Persistence;
+using MaxiZoo.Models;
 
 namespace MaxiZoo.ViewModels
 {
@@ -25,15 +27,17 @@ namespace MaxiZoo.ViewModels
         public ICommand IdentifyUserCommand { get; }
 
         public StartViewModel(
-            UserIdentificationService userIdentificationService,
-            CurrentUserStore currentUserStore,
-            NavigationStore navigationStore)
+          UserIdentificationService userIdentificationService,
+          CurrentUserStore currentUserStore,
+          NavigationStore navigationStore,
+          TaskService taskService)
         {
             IdentifyUserCommand = new IdentifyUserCommand(
                 this,
                 userIdentificationService,
                 currentUserStore,
-                navigationStore);
+                navigationStore,
+                taskService);
         }
     }
 }

@@ -8,29 +8,29 @@ namespace MaxiZoo.Models
     public enum Category
     {
         Cleaning,
-        Restocking,
+        Restockning,
         Cashier,
-        OrderingProducts
+        OrderingProducts,
+        
     }
 
     public enum Priority
     {
-        Low,
-        Medium,
-        High
+        Lav,
+        Mellem,
+        Høj
     }
 
     public enum Status
     {
         NotStarted,
         InProgress,
-        Completed,
-        Rejected,
-        Done
-
+        Done,
+        NotApproved,
+        Completed
     }
 
-    public class Task
+    public class WorkTask
     {
 
         public int TaskID { get; set; }
@@ -41,6 +41,9 @@ namespace MaxiZoo.Models
         public Priority Priority { get; set; }
         public Category Category { get; set; }
         public Status Status { get; set; }
+
+        public bool IsOneTime { get; set; }
+        public bool IsAvailableForAssignment { get; set; } = true;
 
         public int? EmployeeID { get; set; } // Foreign key to Employee
         public Employee? AssignedEmployee { get; set; } // Navigation/reference property to Employee
