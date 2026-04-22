@@ -15,5 +15,10 @@
         <DataTemplate DataType="{x:Type viewModels:EmployeeHomeViewModel}">
             <views:EmployeeHomeView />
         </DataTemplate>
+        
+        <DataTemplate DataType="{x:Type viewModels:CreateTaskViewModel}">
+            <views:CreateTaskView />
+        </DataTemplate>
+        
     </Application.Resources>
 </Application>
