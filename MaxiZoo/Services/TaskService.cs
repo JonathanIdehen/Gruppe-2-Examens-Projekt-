@@ -10,7 +10,7 @@ namespace MaxiZoo.Services
     {
         private readonly TaskRepository _taskRepository;
 
-        public TaskService(TaskRepository taskRepository)
+        public TaskService(TaskRepository taskRepository) 
         {
             _taskRepository = taskRepository;
         }

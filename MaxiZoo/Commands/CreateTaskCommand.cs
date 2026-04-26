@@ -39,7 +39,7 @@ namespace MaxiZoo.Commands
                 Priority = _viewModel.SelectedPriority,
                 Status = Status.NotStarted,
                 IsOneTime = _viewModel.IsOneTime,
-                IsAvailableForAssignment = true
+                IsAvailableForAssignment = true // skal ligge is service
             };
 
             _taskService.CreateTask(task);

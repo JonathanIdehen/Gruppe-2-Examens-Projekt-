@@ -1,7 +1,7 @@
-﻿using System.Windows.Input;
-using MaxiZoo.Commands;
+﻿using MaxiZoo.Commands;
 using MaxiZoo.Services;
 using MaxiZoo.Stores;
+using System.Windows.Input;
 
 namespace MaxiZoo.ViewModels
 {
@@ -17,8 +17,9 @@ namespace MaxiZoo.ViewModels
             _navigationStore = navigationStore;
             _taskService = taskService;
 
-            NavigateToCreateTaskCommand = new RelayCommand(
-                _ => _navigationStore.CurrentViewModel = new CreateTaskViewModel(_taskService));
+            NavigateToCreateTaskCommand = new NavigateCommand(
+                _navigationStore,
+                () => new CreateTaskViewModel(_taskService));
         }
     }
 }
