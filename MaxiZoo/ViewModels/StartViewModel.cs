@@ -27,17 +27,19 @@ namespace MaxiZoo.ViewModels
         public ICommand IdentifyUserCommand { get; }
 
         public StartViewModel(
-          UserIdentificationService userIdentificationService,
-          CurrentUserStore currentUserStore,
-          NavigationStore navigationStore,
-          TaskService taskService)
+    UserIdentificationService userIdentificationService,
+    CurrentUserStore currentUserStore,
+    NavigationStore navigationStore,
+    TaskService taskService,
+    EmployeeRepository employeeRepository)
         {
             IdentifyUserCommand = new IdentifyUserCommand(
                 this,
                 userIdentificationService,
                 currentUserStore,
                 navigationStore,
-                taskService);
+                taskService,
+                employeeRepository);
         }
     }
 }

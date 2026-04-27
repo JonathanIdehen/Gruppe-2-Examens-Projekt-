@@ -15,21 +15,25 @@ namespace MaxiZoo.Commands
         private readonly CurrentUserStore _currentUserStore;
         private readonly NavigationStore _navigationStore;
         private readonly TaskService _taskService;
+        private readonly EmployeeRepository _employeeRepository;
 
 
         public IdentifyUserCommand(
-           StartViewModel startViewModel,
-           UserIdentificationService userIdentificationService,
-           CurrentUserStore currentUserStore,
-           NavigationStore navigationStore,
-           TaskService taskService)
+    StartViewModel startViewModel,
+    UserIdentificationService userIdentificationService,
+    CurrentUserStore currentUserStore,
+    NavigationStore navigationStore,
+    TaskService taskService,
+    EmployeeRepository employeeRepository)
         {
             _startViewModel = startViewModel;
             _userIdentificationService = userIdentificationService;
             _currentUserStore = currentUserStore;
             _navigationStore = navigationStore;
             _taskService = taskService;
+            _employeeRepository = employeeRepository;
         }
+
         public override void Execute(object? parameter)
         {
             if (!int.TryParse(_startViewModel.EmployeeIdInput, out int employeeId))
@@ -44,7 +48,7 @@ namespace MaxiZoo.Commands
             if (employee.Role == Role.Manager)
             {
                 _navigationStore.CurrentViewModel =
-                    new ManagerHomeViewModel(_navigationStore, _taskService);
+                    new ManagerHomeViewModel(_navigationStore, _taskService, _employeeRepository);
             }
             else
             {

@@ -20,5 +20,9 @@
             <views:CreateTaskView />
         </DataTemplate>
         
+        <DataTemplate DataType="{x:Type viewModels:AssignTaskViewModel}">
+            <views:AssignTaskView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>
