@@ -11,13 +11,13 @@ namespace MaxiZoo.ViewModels
 {
     public class CreateTaskViewModel : BaseViewModel
     {
-        public bool IsOneTime { get; set; }
+        public bool IsOneTime { get; set; } 
 
         public Category SelectedCategory { get; set; }
         public Priority SelectedPriority { get; set; }
 
         public string Title { get; set; } = "";
-        public string Description { get; set; } = "";
+        public string Description { get; set; } = ""; 
         public DateTime? Deadline { get; set; }
 
         public ICommand? CreateTaskCommand { get; }
