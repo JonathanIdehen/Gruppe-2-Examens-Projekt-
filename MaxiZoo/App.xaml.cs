@@ -13,6 +13,7 @@ namespace MaxiZoo
         {
             EmployeeRepository employeeRepository = new EmployeeRepository();
             TaskRepository taskRepository = new TaskRepository();
+            TaskService taskService = new TaskService(taskRepository);
             CurrentUserStore currentUserStore = new CurrentUserStore();
             NavigationStore navigationStore = new NavigationStore();
 
@@ -20,8 +21,13 @@ namespace MaxiZoo
                 new UserIdentificationService(employeeRepository);
 
             navigationStore.CurrentViewModel =
-                new StartViewModel(userIdentificationService, currentUserStore, navigationStore, new TaskService(taskRepository));
-             
+    new StartViewModel(
+        userIdentificationService,
+        currentUserStore,
+        navigationStore,
+        taskService,
+        employeeRepository);
+
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(navigationStore);
             MainWindow mainWindow = new MainWindow
             {
