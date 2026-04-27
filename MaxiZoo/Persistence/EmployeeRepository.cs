@@ -39,6 +39,13 @@ namespace MaxiZoo.Persistence
             }
             return null;
         }
+            public List<Employee> GetAllEmployees()
+            {
+               List<Employee> employees = new List<Employee>();
+
+        
+                return employees;
+        }
         //oprette medarbejder
         //fjerne medarbejder
     }

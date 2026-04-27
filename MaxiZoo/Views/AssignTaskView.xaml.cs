@@ -15,7 +15,7 @@ namespace MaxiZoo.Views
     /// <summary>
     /// Interaction logic for AssignTaskView.xaml
     /// </summary>
-    public partial class AssignTaskView : Window
+    public partial class AssignTaskView : UserControl
     {
         public AssignTaskView()
         {
