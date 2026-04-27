@@ -8,17 +8,24 @@ namespace MaxiZoo.Persistence
 {
     public class TaskRepository
     {
-        // skal kunne:
-        //hente alle tasks
-       
-        //oprette task
+        private readonly List<WorkTask> _tasks = new ();
+        
         public void AddTask(WorkTask task)
         {
-            // SQL senere
+            _tasks.Add(task);
+        }
+        public List<WorkTask> GetAvailableTasks()
+        {
+            return _tasks.Where(task => task.IsAvailableForAssignment).ToList();
+        }
+        public void AssignTaskToEmployee(WorkTask task)
+        {
+          WorkTask? taskToUpdate = _tasks.FirstOrDefault(t => t.TaskID == task.TaskID);
+            if (taskToUpdate == null) return;
+            taskToUpdate.EmployeeID = task.EmployeeID;
+            taskToUpdate.AssignedEmployee = task.AssignedEmployee;
+            taskToUpdate.IsAvailableForAssignment = task.IsAvailableForAssignment;
         }
 
-        //opdatere status
-        //tildele medarbejder
-        //hente tasks for en medarbejder
     }
 }
