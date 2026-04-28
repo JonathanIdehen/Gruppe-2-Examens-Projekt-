@@ -22,6 +22,7 @@ namespace MaxiZoo.Services
         {
             _taskRepository.AddTask(task);
         }
+
         public List<WorkTask> GetAvailableTasks() {
             return _taskRepository.GetAvailableTasks();
         }
@@ -35,6 +36,11 @@ namespace MaxiZoo.Services
                 task.IsAvailableForAssignment = false;
             }
             _taskRepository.AssignTaskToEmployee(task);
+        }
+        
+        public List<WorkTask> GetAllTasks()
+        {
+            return _taskRepository.GetAvailableTasks();
         }
     }
 }

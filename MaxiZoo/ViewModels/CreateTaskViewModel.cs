@@ -17,9 +17,18 @@ namespace MaxiZoo.ViewModels
         public Priority SelectedPriority { get; set; }
 
         public string Title { get; set; } = "";
-        public string Description { get; set; } = ""; 
-        public DateTime? Deadline { get; set; }
-
+        public string Description { get; set; } = "";
+        
+        private DateTime? _deadline;
+        public DateTime? Deadline
+        {
+            get => _deadline;
+            set
+            {
+                _deadline = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand? CreateTaskCommand { get; }
 
         public CreateTaskViewModel(TaskService taskService)
