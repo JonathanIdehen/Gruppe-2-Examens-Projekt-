@@ -1,9 +1,10 @@
-﻿using System;
+﻿using MaxiZoo.Services;
+using MaxiZoo. ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 using System.Windows.Input;
-using MaxiZoo.Services;
-using MaxiZoo. ViewModels;
 
 namespace MaxiZoo.Commands
 {
@@ -21,14 +22,22 @@ namespace MaxiZoo.Commands
         public event EventHandler? CanExecuteChanged;
         public bool CanExecute(object? parameter)
             {
-            return _viewModel.SelectedTasks != null && _viewModel.SelectedEmployee != null;
+            return _viewModel.SelectedTask != null && _viewModel.SelectedEmployee != null;
         }
+
         public void Execute(object? parameter)
         {
-            if (_viewModel.SelectedTasks == null || _viewModel.SelectedEmployee == null)
+            if (_viewModel.SelectedTask == null || _viewModel.SelectedEmployee == null)
             {
-                _taskService.AssignTaskToEmployee(_viewModel.SelectedTasks, _viewModel.SelectedEmployee);
+                MessageBox.Show("Vælg både en opgave og en medarbejder.");
+                return;
             }
+
+            _taskService.AssignTaskToEmployee(
+                _viewModel.SelectedTask,
+                _viewModel.SelectedEmployee);
+
+            MessageBox.Show("Opgaven er tildelt.");
         }
     }
 }

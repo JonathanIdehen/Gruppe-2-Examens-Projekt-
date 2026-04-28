@@ -12,7 +12,8 @@ namespace MaxiZoo
         protected override void OnStartup(StartupEventArgs e)
         {
             EmployeeRepository employeeRepository = new EmployeeRepository();
-            TaskRepository taskRepository = new TaskRepository();
+            TaskStore taskStore = new TaskStore();
+            TaskRepository taskRepository = new TaskRepository(taskStore); 
             TaskService taskService = new TaskService(taskRepository);
             CurrentUserStore currentUserStore = new CurrentUserStore();
             NavigationStore navigationStore = new NavigationStore();

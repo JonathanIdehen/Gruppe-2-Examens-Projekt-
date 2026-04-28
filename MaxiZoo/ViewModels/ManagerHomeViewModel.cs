@@ -24,10 +24,14 @@ namespace MaxiZoo.ViewModels
             NavigateToCreateTaskCommand = new NavigateCommand(
                 _navigationStore,
                 () => new CreateTaskViewModel(_taskService));
-
             NavigateToAssignTaskCommand = new NavigateCommand(
                 _navigationStore,
-                () => new AssignTaskViewModel(_taskService, _employeeRepository));
+                () =>
+                {
+                    var vm = new AssignTaskViewModel(_taskService, _employeeRepository);
+                    vm.RefreshTasks(); 
+                    return vm;
+                });
         }
     }
 }

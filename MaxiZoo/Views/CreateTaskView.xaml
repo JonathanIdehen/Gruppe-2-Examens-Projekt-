@@ -16,11 +16,11 @@
                   Margin="0,0,0,10"/>
 
         <TextBlock Text="Titel"/>
-        <TextBox Text="{Binding Title}"
+        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,10"/>
 
         <TextBlock Text="Beskrivelse"/>
-        <TextBox Text="{Binding Description}"
+        <TextBox Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,10"
                  AcceptsReturn="True"
                  Height="80"/>
@@ -31,7 +31,7 @@
                   Margin="0,0,0,10"/>
 
         <TextBlock Text="Deadline"/>
-        <DatePicker SelectedDate="{Binding Deadline}"
+        <DatePicker SelectedDate="{Binding Deadline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="0,0,0,20"/>
 
         <Button Content="Opret opgave"

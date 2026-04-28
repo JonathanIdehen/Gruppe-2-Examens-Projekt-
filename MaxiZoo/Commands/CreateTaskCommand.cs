@@ -1,9 +1,10 @@
 ﻿using MaxiZoo.Models; 
 using MaxiZoo.Persistence; 
+using MaxiZoo.Services;
 using MaxiZoo.ViewModels;
 using System;
+using System.Windows;
 using System.Windows.Input;
-using MaxiZoo.Services;
 
 namespace MaxiZoo.Commands
 {
@@ -27,8 +28,17 @@ namespace MaxiZoo.Commands
 
         public void Execute(object? parameter)
         {
-            if (_viewModel.Deadline == null)
+            if (string.IsNullOrWhiteSpace(_viewModel.Title))
+            {
+                MessageBox.Show("Du skal skrive en titel.");
                 return;
+            }
+
+            if (_viewModel.Deadline == null)
+            {
+                MessageBox.Show("Du skal vælge en deadline.");
+                return;
+            }
 
             WorkTask task = new WorkTask
             {
@@ -39,10 +49,12 @@ namespace MaxiZoo.Commands
                 Priority = _viewModel.SelectedPriority,
                 Status = Status.NotStarted,
                 IsOneTime = _viewModel.IsOneTime,
-                IsAvailableForAssignment = true // skal ligge is service
+                IsAvailableForAssignment = true
             };
 
             _taskService.CreateTask(task);
+
+            MessageBox.Show($"Opgaven er oprettet. Antal ledige opgaver: {_taskService.GetAvailableTasks().Count}");
 
             _viewModel.Title = "";
             _viewModel.Description = "";
