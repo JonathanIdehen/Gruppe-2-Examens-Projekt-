@@ -1,0 +1,37 @@
+@startuml
+
+title UC01 - Opret opgave
+hide footbox
+
+<style>
+element {
+    BackGroundColor: #dbd7d7;
+}
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+}
+</style>
+
+actor ": Chef/Souschef" as C
+participant ": System" as S
+
+C -> S: vælgOpretOpgave()
+
+S --> C: viser formular for oprettelse af en ny opgave
+
+C -> S: vælgKategori()
+
+C -> S: angivTitelogBeskrivelse()
+
+C -> S: angivDeadlineogPrioritet()
+
+C -> S: gemOpgave()
+
+S --> C: opretter opgave med statussen "Afventer"
+
+S --> C: bekræfter oprettelsen
+
+@enduml

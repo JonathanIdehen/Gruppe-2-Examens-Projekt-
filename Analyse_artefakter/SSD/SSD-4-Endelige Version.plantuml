@@ -1,0 +1,28 @@
+@startuml
+title UC04 - Se overblik over alle opgaver
+
+hide footbox
+<style>
+element {  
+    BackGroundColor: #ded7d7;
+}
+
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+
+}
+</style>
+
+actor ": Chef/Souschef eller medarbejder" as M
+participant ": System" as S
+
+M -> S: vælgOverblikOverAlleOpgaver()
+S --> M: viser samlet liste over alle opgaver
+M -> S: vælgFiltrering()
+S --> M: opdaterer visningen ud fra valgte filtre
+
+
+@enduml

@@ -1,0 +1,37 @@
+@startuml
+
+title UC02 - Tildel opgave til medarbejder
+hide footbox
+
+<style>
+element {
+    BackGroundColor: #dbd7d7;
+}
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+}
+</style>
+
+actor ": Chef/Souschef" as C
+participant ": System" as S
+
+C -> S: vælgTildelOpgave()
+
+S --> C: viser liste over ledige opgaver 
+
+C -> S: vælgOpgave()
+
+S --> C: viser opgavedetaljer og medarbejderliste
+
+C -> S: vælgMedarbejder()
+
+C -> S: gem()
+
+S --> C: registrerer og gemmer tildelte medarbejder til valgt opgave
+
+S --> C: bekræfter tildelingen
+
+@enduml

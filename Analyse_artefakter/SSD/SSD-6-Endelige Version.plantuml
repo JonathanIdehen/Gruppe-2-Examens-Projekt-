@@ -1,0 +1,31 @@
+@startuml
+
+title UC06 - Opret ny medarbejder
+hide footbox
+
+<style>
+element {
+    BackGroundColor: #dbd7d7;
+}
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+}
+</style>
+
+actor ": Chef/Souschef" as C
+participant ": System" as S
+
+C -> S: vælgOpretMedarbejder()
+
+S --> C: viser en formular for oprettelse af en medarbejder 
+
+C -> S: udfyldFormular()
+
+C -> S: opretMedarbejder()
+
+S --> C: opretter medarbejder i systemet
+
+@enduml

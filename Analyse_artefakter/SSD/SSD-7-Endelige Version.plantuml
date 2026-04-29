@@ -1,0 +1,31 @@
+@startuml
+
+title UC07 - Gendan opgave
+hide footbox
+
+<style>
+element {
+    BackGroundColor: #dbd7d7;
+}
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+}
+</style>
+
+actor ": Chef/Souschef" as C
+participant ": System" as S
+
+C -> S: vælgGendanOpgave()
+
+S --> C: viser liste over ikke godkendte opgaver
+
+C -> S: vælgOpgave()
+
+C -> S: gendanOpgave()
+
+S --> C: gendanner opgaven i systemet
+
+@enduml

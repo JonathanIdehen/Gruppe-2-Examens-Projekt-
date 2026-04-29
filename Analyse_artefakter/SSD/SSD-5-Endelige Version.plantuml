@@ -1,0 +1,35 @@
+@startuml
+
+title UC05 - Godkend opgave
+hide footbox
+
+<style>
+element {
+    BackGroundColor: #dbd7d7;
+}
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+}
+</style>
+
+actor ": Chef/Souschef" as C
+participant ": System" as S
+
+C -> S: vælgGodkendOpgave()
+S --> C: viser liste over opgaver med statussen "Udført"
+C --> S: vælgOpgave()
+
+alt Opgave godkendes
+  C -> S: godkend()
+  S --> C: markerer og gemmer opgaven som godkendt
+else Opgave godkendes ikke
+  C -> S: godkendIkke()
+  S --> C: beder om en årsag
+  C --> S: vælgÅrsag()
+  S --> C: markerer og gemmer opgaven som ikke godkendt
+end
+
+@enduml
