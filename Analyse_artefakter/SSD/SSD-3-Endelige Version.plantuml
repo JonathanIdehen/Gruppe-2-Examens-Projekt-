@@ -1,0 +1,30 @@
+@startuml
+title UC03 - Opdater status på opgave
+
+hide footbox
+<style>
+element {  
+    BackGroundColor: #ded7d7;
+}
+
+sequenceDiagram {
+    arrow {
+        FontSize: 14;
+        HorizontalAlignment: center;
+    }
+
+}
+</style>
+
+actor ": Medarbejder" as M
+participant ": System" as S
+
+M -> S: vælgMineOpgaver()
+S --> M: viser medarbejderens tildelte opgaver
+M -> S: vælgOpgave()
+S --> M: viser opgavens detaljer
+M -> S: vælgNyStatus()
+M -> S: gem()
+S --> M: opdaterer statussen og gemmer
+
+@enduml
