@@ -18,8 +18,26 @@ namespace MaxiZoo.Services
             _taskRepository = taskRepository;
         }
 
-        public void CreateTask(WorkTask task)
+        public void CreateTask(
+     string title,
+     string description,
+     DateTime deadline,
+     Category category,
+     Priority priority,
+     bool isOneTime)
         {
+            WorkTask task = new WorkTask
+            {
+                Title = title,
+                Description = description,
+                Deadline = deadline,
+                Category = category,
+                Priority = priority,
+                Status = Status.NotStarted,
+                IsOneTime = isOneTime,
+                IsAvailableForAssignment = true
+            };
+
             _taskRepository.AddTask(task);
         }
 
