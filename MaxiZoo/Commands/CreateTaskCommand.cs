@@ -40,21 +40,15 @@ namespace MaxiZoo.Commands
                 return;
             }
 
-            WorkTask task = new WorkTask
-            {
-                Title = _viewModel.Title,
-                Description = _viewModel.Description,
-                Deadline = _viewModel.Deadline.Value,
-                Category = _viewModel.SelectedCategory,
-                Priority = _viewModel.SelectedPriority,
-                Status = Status.NotStarted,
-                IsOneTime = _viewModel.IsOneTime,
-                IsAvailableForAssignment = true
-            };
+            _taskService.CreateTask(
+     _viewModel.Title,
+     _viewModel.Description,
+     _viewModel.Deadline.Value,
+     _viewModel.SelectedCategory,
+     _viewModel.SelectedPriority,
+     _viewModel.IsOneTime
+ );
 
-            _taskService.CreateTask(task);
-
-            MessageBox.Show($"Opgaven er oprettet. Antal ledige opgaver: {_taskService.GetAvailableTasks().Count}");
 
             _viewModel.Title = "";
             _viewModel.Description = "";
