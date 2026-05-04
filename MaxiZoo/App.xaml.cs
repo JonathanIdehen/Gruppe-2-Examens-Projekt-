@@ -12,6 +12,7 @@ namespace MaxiZoo
         protected override void OnStartup(StartupEventArgs e)
         {
             EmployeeRepository employeeRepository = new EmployeeRepository();
+            EmployeeService employeeService = new EmployeeService(employeeRepository);
             TaskStore taskStore = new TaskStore();
             TaskRepository taskRepository = new TaskRepository(taskStore); 
             TaskService taskService = new TaskService(taskRepository);
@@ -22,12 +23,13 @@ namespace MaxiZoo
                 new UserIdentificationService(employeeRepository);
 
             navigationStore.CurrentViewModel =
-    new StartViewModel(
-        userIdentificationService,
-        currentUserStore,
-        navigationStore,
-        taskService,
-        employeeRepository);
+              new StartViewModel(
+              userIdentificationService,
+              currentUserStore,
+              navigationStore,
+              taskService,
+              employeeRepository,
+              employeeService);
 
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(navigationStore);
             MainWindow mainWindow = new MainWindow

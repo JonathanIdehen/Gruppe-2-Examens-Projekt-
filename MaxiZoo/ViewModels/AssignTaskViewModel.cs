@@ -45,6 +45,14 @@ namespace MaxiZoo.ViewModels
             AvailableTasks = _taskService.GetAvailableTasks();
             OnPropertyChanged(nameof(AvailableTasks));
         }
+        public void RefreshData()
+        {
+            AvailableTasks = _taskService.GetAvailableTasks();
+            Employees = _employeeRepository.GetAllEmployees();
+
+            OnPropertyChanged(nameof(AvailableTasks));
+            OnPropertyChanged(nameof(Employees));
+        }
 
 
         public ICommand AssignTaskCommand { get; }

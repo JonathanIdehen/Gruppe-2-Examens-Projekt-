@@ -11,15 +11,21 @@ namespace MaxiZoo.ViewModels
         private readonly NavigationStore _navigationStore;
         private readonly TaskService _taskService;
         private readonly EmployeeRepository _employeeRepository;
+        private readonly EmployeeService _employeeService;
+
+
 
         public ICommand NavigateToCreateTaskCommand { get; }
         public ICommand NavigateToAssignTaskCommand { get; }
+        public ICommand NavigateToCreateEmployeeCommand { get; }
 
-        public ManagerHomeViewModel(NavigationStore navigationStore, TaskService taskService, EmployeeRepository employeeRepository)
+        public ManagerHomeViewModel(NavigationStore navigationStore, TaskService taskService, 
+            EmployeeRepository employeeRepository, EmployeeService employeeService)
         {
             _navigationStore = navigationStore;
             _taskService = taskService;
             _employeeRepository = employeeRepository;
+            _employeeService = employeeService;
 
             NavigateToCreateTaskCommand = new NavigateCommand(
                 _navigationStore,
@@ -29,9 +35,14 @@ namespace MaxiZoo.ViewModels
                 () =>
                 {
                     var vm = new AssignTaskViewModel(_taskService, _employeeRepository);
-                    vm.RefreshTasks(); 
+                    vm.RefreshData(); 
                     return vm;
                 });
-        }
+            NavigateToCreateEmployeeCommand = new NavigateCommand(
+               _navigationStore,
+               () => new CreateEmployeeViewModel(_employeeService, _navigationStore, _taskService,
+        _employeeRepository));
+               }
+
     }
 }

@@ -17,7 +17,9 @@
         
         <Button Content="Godkend opgave" Margin="0,0,0,10"/>
         
-        <Button Content="Opret medarbejder" Margin="0,0,0,10"/>
+        <Button Content="Opret medarbejder" 
+                Margin="0,0,0,10"
+                Command="{Binding NavigateToCreateEmployeeCommand}"/>
         
         <Button Content="Gendan opgave" Margin="0,0,0,10"/>
         
