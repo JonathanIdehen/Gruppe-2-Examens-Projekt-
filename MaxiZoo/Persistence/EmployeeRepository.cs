@@ -39,15 +39,51 @@ namespace MaxiZoo.Persistence
             }
             return null;
         }
-            public List<Employee> GetAllEmployees()
-            {
-               List<Employee> employees = new List<Employee>();
 
-        
-                return employees;
+        public List<Employee> GetAllEmployees()
+        {
+            List<Employee> employees = new List<Employee>();
+
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = "SELECT EmployeeID, Name, Role FROM Employee";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                employees.Add(new Employee
+                {
+                    EmployeeID = (int)reader["EmployeeID"],
+                    Name = reader["Name"].ToString() ?? "",
+                    Role = (Role)(int)reader["Role"]
+                });
+            }
+
+            return employees;
         }
-        //oprette medarbejder
-        //fjerne medarbejder
+
+        public void AddEmployee(Employee employee)
+        {
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = @"
+    INSERT INTO Employee (EmployeeID, Role, Name)
+    VALUES (@EmployeeID, @Role, @Name)";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@EmployeeID", employee.EmployeeID);
+            command.Parameters.AddWithValue("@Role", (int)employee.Role);
+            command.Parameters.AddWithValue("@Name", employee.Name);
+
+            command.ExecuteNonQuery();
+        }
+
+      
     }
 }
 
