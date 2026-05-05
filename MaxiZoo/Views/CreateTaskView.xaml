@@ -16,7 +16,7 @@
                   Margin="0,0,0,10"/>
 
         <TextBlock Text="Titel"/>
-        <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
+        <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                  Margin="0,0,0,10"/>
 
         <TextBlock Text="Beskrivelse"/>

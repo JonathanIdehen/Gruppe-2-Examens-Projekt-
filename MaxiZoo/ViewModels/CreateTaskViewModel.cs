@@ -16,9 +16,28 @@ namespace MaxiZoo.ViewModels
         public Category SelectedCategory { get; set; }
         public Priority SelectedPriority { get; set; }
 
-        public string Title { get; set; } = "";
-        public string Description { get; set; } = "";
-        
+        private string _title = "";
+        public string Title
+        {
+            get => _title;
+            set
+            {
+                _title = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _description = "";
+        public string Description
+        {
+            get => _description;
+            set
+            {
+                _description = value;
+                OnPropertyChanged();
+            }
+        }
+
         private DateTime? _deadline;
         public DateTime? Deadline
         {
@@ -29,7 +48,7 @@ namespace MaxiZoo.ViewModels
                 OnPropertyChanged();
             }
         }
-        public ICommand? CreateTaskCommand { get; }
+        public ICommand CreateTaskCommand { get; }
 
         public CreateTaskViewModel(TaskService taskService)
         {

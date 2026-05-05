@@ -18,25 +18,27 @@ namespace MaxiZoo.Services
             _taskRepository = taskRepository;
         }
 
-        public void CreateTask(
-     string title,
-     string description,
-     DateTime deadline,
-     Category category,
-     Priority priority,
-     bool isOneTime)
+        public void CreateTask
+        (
+            string title,
+            string description,
+            DateTime deadline,
+            Category category,
+            Priority priority,
+            bool isOneTime)
         {
-            WorkTask task = new WorkTask
-            {
-                Title = title,
-                Description = description,
-                Deadline = deadline,
-                Category = category,
-                Priority = priority,
-                Status = Status.NotStarted,
-                IsOneTime = isOneTime,
-                IsAvailableForAssignment = true
-            };
+            
+        WorkTask task = new WorkTask
+        {
+            Title = title,
+            Description = description,
+            Deadline = deadline,
+            Category = category,
+            Priority = priority,
+            Status = Status.NotStarted,
+            IsOneTime = isOneTime,
+            IsAvailableForAssignment = true
+        };
 
             _taskRepository.AddTask(task);
         }
@@ -68,6 +70,23 @@ namespace MaxiZoo.Services
 
         public void UpdateTaskStatus(WorkTask task)
         {
+            _taskRepository.UpdateTaskStatus(task);
+        }
+
+        public List<WorkTask> GetTasksForApproval()
+        {
+            return _taskRepository.GetTasksForApproval();
+        }
+
+        public void ApproveTask(WorkTask task)
+        {
+            task.Status = Status.Done;
+            _taskRepository.UpdateTaskStatus(task);
+        }
+
+        public void RejectTask(WorkTask task)
+        {
+            task.Status = Status.NotApproved;
             _taskRepository.UpdateTaskStatus(task);
         }
     }

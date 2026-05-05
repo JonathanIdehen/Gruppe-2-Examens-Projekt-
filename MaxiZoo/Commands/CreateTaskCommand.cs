@@ -41,12 +41,12 @@ namespace MaxiZoo.Commands
             }
 
             _taskService.CreateTask(
-     _viewModel.Title,
-     _viewModel.Description,
-     _viewModel.Deadline.Value,
-     _viewModel.SelectedCategory,
-     _viewModel.SelectedPriority,
-     _viewModel.IsOneTime
+            _viewModel.Title,
+            _viewModel.Description,
+            _viewModel.Deadline.Value,
+            _viewModel.SelectedCategory,
+            _viewModel.SelectedPriority,
+            _viewModel.IsOneTime
  );
 
 
