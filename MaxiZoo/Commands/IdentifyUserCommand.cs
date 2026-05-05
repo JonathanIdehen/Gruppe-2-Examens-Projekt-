@@ -20,13 +20,13 @@ namespace MaxiZoo.Commands
 
 
         public IdentifyUserCommand(
-    StartViewModel startViewModel,
-    UserIdentificationService userIdentificationService,
-    CurrentUserStore currentUserStore,
-    NavigationStore navigationStore,
-    TaskService taskService,
-    EmployeeRepository employeeRepository,
-    EmployeeService employeeService)
+        StartViewModel startViewModel,
+        UserIdentificationService userIdentificationService,
+        CurrentUserStore currentUserStore,
+        NavigationStore navigationStore,
+        TaskService taskService,
+        EmployeeRepository employeeRepository,
+        EmployeeService employeeService)
         {
             _startViewModel = startViewModel;
             _userIdentificationService = userIdentificationService;
@@ -55,7 +55,11 @@ namespace MaxiZoo.Commands
             }
             else
             {
-                _navigationStore.CurrentViewModel = new EmployeeHomeViewModel();
+                _navigationStore.CurrentViewModel =
+                   new EmployeeHomeViewModel(
+                      _navigationStore,
+                      _taskService,
+                      _currentUserStore);
             }
         }
     }

@@ -15,7 +15,7 @@ namespace MaxiZoo.Views
     /// <summary>
     /// Interaction logic for MyTasksView.xaml
     /// </summary>
-    public partial class MyTasksView : Window
+    public partial class MyTasksView : UserControl
     {
         public MyTasksView()
         {

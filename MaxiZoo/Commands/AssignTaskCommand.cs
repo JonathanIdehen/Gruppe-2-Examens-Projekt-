@@ -18,11 +18,11 @@ namespace MaxiZoo.Commands
             _viewModel = viewModel;
             _taskService = taskService;
         }
-        
-        public event EventHandler? CanExecuteChanged;
+       
         public bool CanExecute(object? parameter)
-            {
-            return _viewModel.SelectedTask != null && _viewModel.SelectedEmployee != null;
+        {
+            return _viewModel.SelectedTask != null &&
+                   _viewModel.SelectedEmployee != null;
         }
 
         public void Execute(object? parameter)
@@ -33,11 +33,19 @@ namespace MaxiZoo.Commands
                 return;
             }
 
-            _taskService.AssignTaskToEmployee(
-                _viewModel.SelectedTask,
-                _viewModel.SelectedEmployee);
+                _taskService.AssignTaskToEmployee(
+                _viewModel.SelectedTask!,
+                _viewModel.SelectedEmployee!); 
 
             MessageBox.Show("Opgaven er tildelt.");
+            _viewModel.RefreshData();
+        }
+
+        public event EventHandler? CanExecuteChanged;
+
+        public void RaiseCanExecuteChanged()
+        {
+            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }
