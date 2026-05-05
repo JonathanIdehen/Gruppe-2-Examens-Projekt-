@@ -15,7 +15,9 @@
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToAssignTaskCommand}"/>
         
-        <Button Content="Godkend opgave" Margin="0,0,0,10"/>
+        <Button Content="Godkend opgave" 
+                Margin="0,0,0,10"
+                Command="{Binding NavigateToApproveTaskCommand}"/>
         
         <Button Content="Opret medarbejder" 
                 Margin="0,0,0,10"

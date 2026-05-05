@@ -32,5 +32,9 @@
             <views:MyTasksView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:ApproveTaskViewModel}">
+            <views:ApproveTaskView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

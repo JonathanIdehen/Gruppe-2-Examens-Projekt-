@@ -15,7 +15,7 @@ namespace MaxiZoo.Views
     /// <summary>
     /// Interaction logic for ApproveTaskView.xaml
     /// </summary>
-    public partial class ApproveTaskView : Window
+    public partial class ApproveTaskView : UserControl
     {
         public ApproveTaskView()
         {
