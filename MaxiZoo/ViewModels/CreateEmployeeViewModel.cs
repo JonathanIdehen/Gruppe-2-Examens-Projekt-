@@ -27,31 +27,28 @@ namespace MaxiZoo.ViewModels
             Enum.GetValues(typeof(Role)).Cast<Role>().ToList();
 
         public ICommand CreateEmployeeCommand { get; }
-
-  
-
         public ICommand GoBackCommand { get; }
+        public ICommand NavigateBackCommand { get; }
 
 
         public CreateEmployeeViewModel(
-    EmployeeService employeeService,
-    NavigationStore navigationStore,
-    TaskService taskService,
-    EmployeeRepository employeeRepository)
+               EmployeeService employeeService,
+               NavigationService navigationService,
+               NavigationStore navigationStore,
+               TaskService taskService,
+               EmployeeRepository employeeRepository)
         {
             _employeeService = employeeService;
-            _navigationStore = navigationStore;
-            _taskService = taskService;
-            _employeeRepository = employeeRepository;
-
+            
             CreateEmployeeCommand = new CreateEmployeeCommand(this, employeeService);
 
-            GoBackCommand = new NavigateCommand(
-                _navigationStore,
+            NavigateBackCommand = new NavigateCommand(
+                navigationService,
                 () => new ManagerHomeViewModel(
-                    _navigationStore,
-                    _taskService,
-                    _employeeRepository,
+                    navigationStore,
+                    navigationService,
+                    taskService,
+                    employeeRepository,
                     _employeeService));
         }
     }

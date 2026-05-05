@@ -20,14 +20,27 @@ namespace MaxiZoo.ViewModels
             Enum.GetValues(typeof(Status)).Cast<Status>().ToList();
 
         public ICommand UpdateTaskStatusCommand { get; }
+        public ICommand NavigateBackCommand { get; }
 
-        public MyTasksViewModel(TaskService taskService, CurrentUserStore currentUserStore)
+        public MyTasksViewModel(
+            TaskService taskService, 
+            CurrentUserStore currentUserStore,
+            NavigationService navigationService,
+            NavigationStore navigationStore)
         {
             _taskService = taskService;
             _currentUserStore = currentUserStore;
 
             MyTasks = _taskService.GetTasksByEmployee(
                 _currentUserStore.CurrentUser.EmployeeID);
+
+            NavigateBackCommand = new NavigateCommand(
+       navigationService,
+       () => new EmployeeHomeViewModel(
+           navigationStore,
+           navigationService,
+           taskService,
+           currentUserStore));
 
             UpdateTaskStatusCommand = new UpdateTaskStatusCommand(_taskService);
         }

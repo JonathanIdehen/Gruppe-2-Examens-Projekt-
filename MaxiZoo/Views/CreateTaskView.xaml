@@ -4,11 +4,16 @@
 
     <StackPanel Margin="20">
 
-        <TextBlock Text="Ny opgave" FontSize="22" Margin="0,0,0,20"/>
+            <Button Content="Tilbage"
+            Command="{Binding NavigateBackCommand}"
+            Width="49"
+            Margin="0,0,85,10"/>
+
+            <TextBlock Text="Ny opgave" FontSize="22" Margin="0,0,0,20"/>
 
         <CheckBox Content="Engangsopgave"
                   IsChecked="{Binding IsOneTime}"
-                  Margin="0,0,0,10"/>
+                  Margin="0,0,0,10" RenderTransformOrigin="0.479,-1.243"/>
 
         <TextBlock Text="Kategori"/>
         <ComboBox ItemsSource="{Binding Categories}"
@@ -33,9 +38,10 @@
         <TextBlock Text="Deadline"/>
         <DatePicker SelectedDate="{Binding Deadline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="0,0,0,20"/>
-
         <Button Content="Opret opgave"
                 Command="{Binding CreateTaskCommand}"
-                Width="140"/>
+                Width="140" Height="25"/>
+       
+
     </StackPanel>
 </UserControl>

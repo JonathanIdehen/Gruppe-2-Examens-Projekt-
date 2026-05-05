@@ -18,6 +18,7 @@ namespace MaxiZoo
             TaskService taskService = new TaskService(taskRepository);
             CurrentUserStore currentUserStore = new CurrentUserStore();
             NavigationStore navigationStore = new NavigationStore();
+            NavigationService navigationService = new NavigationService(navigationStore);
 
             UserIdentificationService userIdentificationService =
                 new UserIdentificationService(employeeRepository);
@@ -29,7 +30,8 @@ namespace MaxiZoo
               navigationStore,
               taskService,
               employeeRepository,
-              employeeService);
+              employeeService,
+              navigationService);
 
             MainWindowViewModel mainWindowViewModel = new MainWindowViewModel(navigationStore);
             MainWindow mainWindow = new MainWindow

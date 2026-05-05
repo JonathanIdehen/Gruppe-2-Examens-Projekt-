@@ -1,4 +1,4 @@
-﻿using MaxiZoo.Stores;
+﻿using MaxiZoo.Services;
 using MaxiZoo.ViewModels;
 using System;
 using System.Windows.Input;
@@ -7,25 +7,22 @@ namespace MaxiZoo.Commands
 {
     public class NavigateCommand : ICommand
     {
-        private readonly NavigationStore _navigationStore;
+        private readonly NavigationService _navigationService;
         private readonly Func<BaseViewModel> _createViewModel;
 
-        public NavigateCommand(NavigationStore navigationStore, Func<BaseViewModel> createViewModel) 
+        public NavigateCommand(NavigationService navigationService, Func<BaseViewModel> createViewModel)
         {
-            _navigationStore = navigationStore;
+            _navigationService = navigationService;
             _createViewModel = createViewModel;
         }
 
-        public event EventHandler? CanExecuteChanged;
-
-        public bool CanExecute(object? parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object? parameter) => true;
 
         public void Execute(object? parameter)
         {
-            _navigationStore.CurrentViewModel = _createViewModel();
+            _navigationService.NavigateTo(_createViewModel());
         }
+
+        public event EventHandler? CanExecuteChanged;
     }
 }

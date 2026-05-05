@@ -36,5 +36,9 @@
             <views:ApproveTaskView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:RestoreTaskViewModel}">
+            <views:RestoreTaskView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

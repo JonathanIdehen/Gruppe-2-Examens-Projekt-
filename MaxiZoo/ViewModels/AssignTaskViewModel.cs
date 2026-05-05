@@ -62,17 +62,35 @@ namespace MaxiZoo.ViewModels
 
 
         public AssignTaskCommand AssignTaskCommand { get; }
-        public AssignTaskViewModel(TaskService taskService, EmployeeRepository employeeRepository) 
+        public ICommand NavigateBackCommand { get; }
+
+        public AssignTaskViewModel(
+               TaskService taskService,
+               EmployeeRepository employeeRepository,
+               NavigationService navigationService,
+               NavigationStore navigationStore,
+               EmployeeService employeeService)
         {
             _taskService = taskService;
             _employeeRepository = employeeRepository;
+
             AvailableTasks = _taskService.GetAvailableTasks();
             Employees = _employeeRepository.GetAllEmployees();
-            MessageBox.Show("Opgaver i AssignTaskViewModel: " + AvailableTasks.Count);
 
             AssignTaskCommand = new AssignTaskCommand(this, _taskService);
+
+            NavigateBackCommand = new NavigateCommand(
+                navigationService,
+                () => new ManagerHomeViewModel(
+                    navigationStore,
+                    navigationService,
+                    taskService,
+                    employeeRepository,
+                    employeeService));
         }
-       
-        
+
+
+
+
     }
 }

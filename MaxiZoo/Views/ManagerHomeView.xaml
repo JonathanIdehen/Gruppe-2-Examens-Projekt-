@@ -9,7 +9,8 @@
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToCreateTaskCommand}"/>
         
-        <Button Content="Overblik over alle opgaver" Margin="0,0,0,10"/>
+        <Button Content="Overblik over alle opgaver" 
+                Margin="0,0,0,10"/>
         
         <Button Content="Tildel opgave" 
                 Margin="0,0,0,10"
@@ -23,7 +24,9 @@
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToCreateEmployeeCommand}"/>
         
-        <Button Content="Gendan opgave" Margin="0,0,0,10"/>
+        <Button Content="Gendan opgave" 
+                Margin="0,0,0,10"
+                Command="{Binding NavigateToRestoreTaskCommand}"/>
         
     </StackPanel>
 </UserControl>
