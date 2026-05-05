@@ -15,7 +15,7 @@ namespace MaxiZoo.Views
     /// <summary>
     /// Interaction logic for RestoreTaskView.xaml
     /// </summary>
-    public partial class RestoreTaskView : Window
+    public partial class RestoreTaskView : UserControl
     {
         public RestoreTaskView()
         {

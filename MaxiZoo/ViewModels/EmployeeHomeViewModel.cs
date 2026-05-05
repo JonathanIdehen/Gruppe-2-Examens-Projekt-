@@ -18,6 +18,7 @@ namespace MaxiZoo.ViewModels
 
         public EmployeeHomeViewModel(
             NavigationStore navigationStore,
+            NavigationService navigationService,
             TaskService taskService,
             CurrentUserStore currentUserStore)
         {
@@ -26,8 +27,12 @@ namespace MaxiZoo.ViewModels
             _currentUserStore = currentUserStore;
 
             NavigateToMyTasksCommand = new NavigateCommand(
-                _navigationStore,
-                () => new MyTasksViewModel(_taskService, _currentUserStore));
+                navigationService,
+                () => new MyTasksViewModel(
+                    taskService,
+                    currentUserStore,
+                    navigationService,
+                    navigationStore));
         }
     }
 }

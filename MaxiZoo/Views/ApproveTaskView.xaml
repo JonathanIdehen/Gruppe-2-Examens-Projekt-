@@ -8,7 +8,22 @@
              mc:Ignorable="d">
 
     <Grid Margin="20">
-        <DataGrid ItemsSource="{Binding TasksForApproval}"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Tilbage-knap -->
+            <RowDefinition Height="*"/>
+            <!-- DataGrid -->
+        </Grid.RowDefinitions>
+
+        <!-- 🔙 Tilbage-knap -->
+        <Button Content="Tilbage"
+            Command="{Binding NavigateBackCommand}"
+            Width="120"
+            Margin="15,0,625,10"
+            Grid.Row="0"/>
+
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding TasksForApproval}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False">
 
@@ -42,6 +57,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

@@ -46,7 +46,7 @@
             Margin="0,60,0,0"/>
 
             <Button Content="Tilbage"
-        Command="{Binding GoBackCommand}"
+        Command="{Binding NavigateBackCommand}"
         Width="120"
         Height="50" Grid.Column="1" Margin="410,80,-280,-20" Grid.Row="4"/>
         </Grid>

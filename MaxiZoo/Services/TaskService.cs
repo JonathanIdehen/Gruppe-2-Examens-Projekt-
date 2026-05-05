@@ -89,5 +89,20 @@ namespace MaxiZoo.Services
             task.Status = Status.NotApproved;
             _taskRepository.UpdateTaskStatus(task);
         }
+       
+        public List<WorkTask> GetRejectedTasks()
+        {
+            return _taskRepository.GetRejectedTasks();
+        }
+
+        public void RestoreTask(WorkTask task)
+        {
+            task.Status = Status.NotStarted;
+            task.EmployeeID = null;
+            task.AssignedEmployee = null;
+            task.IsAvailableForAssignment = true;
+
+            _taskRepository.RestoreTask(task);
+        }
     }
 }
