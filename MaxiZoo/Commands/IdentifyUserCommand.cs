@@ -68,7 +68,9 @@ namespace MaxiZoo.Commands
                       _navigationStore,
                       _navigationService,
                       _taskService,
-                      _currentUserStore);
+                      _currentUserStore,
+                      _employeeRepository,
+                      _employeeService);
             }
         }
     }

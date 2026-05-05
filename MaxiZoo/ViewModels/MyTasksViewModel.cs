@@ -1,11 +1,12 @@
 ﻿using MaxiZoo.Commands;
 using MaxiZoo.Models;
+using MaxiZoo.Persistence;
 using MaxiZoo.Services;
 using MaxiZoo.Stores;
-using System.Collections.Generic;
-using System.Windows.Input;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 
 namespace MaxiZoo.ViewModels
 {
@@ -26,7 +27,9 @@ namespace MaxiZoo.ViewModels
             TaskService taskService, 
             CurrentUserStore currentUserStore,
             NavigationService navigationService,
-            NavigationStore navigationStore)
+            NavigationStore navigationStore,
+            EmployeeRepository employeeRepository,
+            EmployeeService employeeService)
         {
             _taskService = taskService;
             _currentUserStore = currentUserStore;
@@ -40,7 +43,9 @@ namespace MaxiZoo.ViewModels
            navigationStore,
            navigationService,
            taskService,
-           currentUserStore));
+           currentUserStore,
+           employeeRepository,
+           employeeService));
 
             UpdateTaskStatusCommand = new UpdateTaskStatusCommand(_taskService);
         }
