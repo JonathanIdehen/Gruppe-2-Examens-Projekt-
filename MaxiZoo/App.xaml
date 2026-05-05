@@ -40,5 +40,9 @@
             <views:RestoreTaskView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:TaskOverviewViewModel}">
+            <views:TaskOverviewView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

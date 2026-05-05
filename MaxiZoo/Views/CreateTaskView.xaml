@@ -2,14 +2,17 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <StackPanel Margin="20">
+    <Grid Margin="20">
 
-            <Button Content="Tilbage"
-            Command="{Binding NavigateBackCommand}"
-            Width="49"
-            Margin="0,0,85,10"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
-            <TextBlock Text="Ny opgave" FontSize="22" Margin="0,0,0,20"/>
+        <ScrollViewer Grid.Row="0">
+            <StackPanel>
+
+                <TextBlock Text="Ny opgave" FontSize="22" Margin="0,0,0,20"/>
 
         <CheckBox Content="Engangsopgave"
                   IsChecked="{Binding IsOneTime}"
@@ -38,10 +41,18 @@
         <TextBlock Text="Deadline"/>
         <DatePicker SelectedDate="{Binding Deadline, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                     Margin="0,0,0,20"/>
-        <Button Content="Opret opgave"
+                              
+                <Button Content="Opret opgave"
                 Command="{Binding CreateTaskCommand}"
                 Width="140" Height="25"/>
-       
+            </StackPanel>
+        </ScrollViewer>
 
-    </StackPanel>
+        <Button Grid.Row="1"
+                Content="Tilbage"
+                Command="{Binding NavigateBackCommand}"
+                Width="52"
+                Margin="0,15,0,0"
+                HorizontalAlignment="Left"/>
+    </Grid>
 </UserControl>

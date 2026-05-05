@@ -236,5 +236,40 @@ namespace MaxiZoo.Persistence
 
             command.ExecuteNonQuery();
         }
+
+        public List<WorkTask> GetAllTasks()
+        {
+            List<WorkTask> tasks = new();
+
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = @"
+            SELECT TaskID, Title, Description, Deadline, Category, Priority, Status,
+            IsOneTime, IsAvailableForAssignment, EmployeeID
+            FROM [Task]";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                tasks.Add(new WorkTask
+                {
+                    TaskID = (int)reader["TaskID"],
+                    Title = reader["Title"].ToString() ?? "",
+                    Description = reader["Description"].ToString() ?? "",
+                    Deadline = (DateTime)reader["Deadline"],
+                    Category = (Category)(int)reader["Category"],
+                    Priority = (Priority)(int)reader["Priority"],
+                    Status = (Status)(int)reader["Status"],
+                    IsOneTime = (bool)reader["IsOneTime"],
+                    IsAvailableForAssignment = (bool)reader["IsAvailableForAssignment"],
+                    EmployeeID = reader["EmployeeID"] as int?
+                });
+            }
+
+            return tasks;
+        }
     }
 }

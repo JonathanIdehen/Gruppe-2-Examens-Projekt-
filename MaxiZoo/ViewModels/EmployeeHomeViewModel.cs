@@ -1,4 +1,5 @@
 ﻿using MaxiZoo.Commands;
+using MaxiZoo.Persistence;
 using MaxiZoo.Services;
 using MaxiZoo.Stores;
 using System;
@@ -15,16 +16,20 @@ namespace MaxiZoo.ViewModels
         private readonly CurrentUserStore _currentUserStore;
 
         public ICommand NavigateToMyTasksCommand { get; }
+        public ICommand NavigateToTaskOverviewCommand { get; }
 
         public EmployeeHomeViewModel(
             NavigationStore navigationStore,
             NavigationService navigationService,
             TaskService taskService,
-            CurrentUserStore currentUserStore)
+            CurrentUserStore currentUserStore,
+            EmployeeRepository employeeRepository,
+            EmployeeService employeeService)
         {
             _navigationStore = navigationStore;
             _taskService = taskService;
             _currentUserStore = currentUserStore;
+
 
             NavigateToMyTasksCommand = new NavigateCommand(
                 navigationService,
@@ -32,7 +37,22 @@ namespace MaxiZoo.ViewModels
                     taskService,
                     currentUserStore,
                     navigationService,
-                    navigationStore));
+                    navigationStore,
+                    employeeRepository,
+                    employeeService));
+
+            NavigateToTaskOverviewCommand = new NavigateCommand(
+                navigationService,
+                () => new TaskOverviewViewModel(
+                   taskService,
+                   navigationService,
+                   () => new EmployeeHomeViewModel(
+                      navigationStore,
+                      navigationService,
+                      taskService,
+                      currentUserStore,
+                      employeeRepository,
+                      employeeService)));
         }
     }
 }

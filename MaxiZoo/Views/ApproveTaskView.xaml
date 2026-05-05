@@ -9,20 +9,16 @@
 
     <Grid Margin="20">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <!-- Tilbage-knap -->
             <RowDefinition Height="*"/>
             <!-- DataGrid -->
+            <RowDefinition Height="Auto"/>
+            <!-- Tilbage-knap -->
         </Grid.RowDefinitions>
 
-        <!-- 🔙 Tilbage-knap -->
-        <Button Content="Tilbage"
-            Command="{Binding NavigateBackCommand}"
-            Width="120"
-            Margin="15,0,625,10"
-            Grid.Row="0"/>
 
-        <DataGrid Grid.Row="1"
+
+
+        <DataGrid Grid.Row="0"
                   ItemsSource="{Binding TasksForApproval}"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False">
@@ -60,5 +56,10 @@
                 
             </DataGrid.Columns>
         </DataGrid>
+        <Button Content="Tilbage"
+    Command="{Binding NavigateBackCommand}"
+    Width="120"
+    Margin="15,0,625,10"
+    Grid.Row="1"/>
     </Grid>
 </UserControl>

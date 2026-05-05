@@ -10,7 +10,8 @@
                 Command="{Binding NavigateToCreateTaskCommand}"/>
         
         <Button Content="Overblik over alle opgaver" 
-                Margin="0,0,0,10"/>
+                Margin="0,0,0,10"
+                Command="{Binding NavigateToTaskOverviewCommand}"/>
         
         <Button Content="Tildel opgave" 
                 Margin="0,0,0,10"
