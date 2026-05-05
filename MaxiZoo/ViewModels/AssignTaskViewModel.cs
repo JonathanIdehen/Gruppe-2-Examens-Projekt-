@@ -27,6 +27,7 @@ namespace MaxiZoo.ViewModels
             {
                 _selectedTask = value;
                 OnPropertyChanged();
+                AssignTaskCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -38,6 +39,7 @@ namespace MaxiZoo.ViewModels
             {
                 _selectedEmployee = value;
                 OnPropertyChanged();
+                AssignTaskCommand.RaiseCanExecuteChanged();
             }
         }
         public void RefreshTasks()
@@ -45,6 +47,7 @@ namespace MaxiZoo.ViewModels
             AvailableTasks = _taskService.GetAvailableTasks();
             OnPropertyChanged(nameof(AvailableTasks));
         }
+        
         public void RefreshData()
         {
             AvailableTasks = _taskService.GetAvailableTasks();
@@ -52,11 +55,14 @@ namespace MaxiZoo.ViewModels
 
             OnPropertyChanged(nameof(AvailableTasks));
             OnPropertyChanged(nameof(Employees));
+
+            SelectedTask = null;
+            SelectedEmployee = null;
         }
 
 
-        public ICommand AssignTaskCommand { get; }
-        public AssignTaskViewModel(TaskService taskService, EmployeeRepository employeeRepository)
+        public AssignTaskCommand AssignTaskCommand { get; }
+        public AssignTaskViewModel(TaskService taskService, EmployeeRepository employeeRepository) 
         {
             _taskService = taskService;
             _employeeRepository = employeeRepository;
@@ -67,6 +73,6 @@ namespace MaxiZoo.ViewModels
             AssignTaskCommand = new AssignTaskCommand(this, _taskService);
         }
        
-
+        
     }
 }

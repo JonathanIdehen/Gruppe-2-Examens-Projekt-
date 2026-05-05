@@ -8,7 +8,7 @@ namespace MaxiZoo.Persistence
     {
         private readonly TaskStore _taskStore;
         private readonly string _connectionString =
-     "Server=localhost\\SQLEXPRESS;Database=MaxiZoo;Trusted_Connection=True;TrustServerCertificate=true;";
+        "Server=localhost\\SQLEXPRESS;Database=MaxiZoo;Trusted_Connection=True;TrustServerCertificate=true;";
 
         public TaskRepository(TaskStore taskStore)
         {
@@ -20,10 +20,10 @@ namespace MaxiZoo.Persistence
             connection.Open();
 
             string query = @"
-        INSERT INTO [Task]
-        (Title, Description, Deadline, Category, Priority, Status, IsOneTime, IsAvailableForAssignment)
-        VALUES
-        (@Title, @Description, @Deadline, @Category, @Priority, @Status, @IsOneTime, @IsAvailableForAssignment)";
+            INSERT INTO [Task]
+            (Title, Description, Deadline, Category, Priority, Status, IsOneTime, IsAvailableForAssignment)
+            VALUES
+            (@Title, @Description, @Deadline, @Category, @Priority, @Status, @IsOneTime, @IsAvailableForAssignment)";
 
             using SqlCommand command = new SqlCommand(query, connection);
 
@@ -47,9 +47,9 @@ namespace MaxiZoo.Persistence
             connection.Open();
 
             string query = @"
-        SELECT TaskID, Title, Description, Deadline, Category, Priority, Status, IsOneTime, IsAvailableForAssignment
-        FROM [Task]
-        WHERE IsAvailableForAssignment = 1";
+            SELECT TaskID, Title, Description, Deadline, Category, Priority, Status, IsOneTime, IsAvailableForAssignment
+            FROM [Task]
+            WHERE IsAvailableForAssignment = 1";
 
             using SqlCommand command = new SqlCommand(query, connection);
             using SqlDataReader reader = command.ExecuteReader();
@@ -75,15 +75,74 @@ namespace MaxiZoo.Persistence
 
         public void AssignTaskToEmployee(WorkTask task)
         {
-            WorkTask? taskToUpdate = _taskStore.Tasks
-                .FirstOrDefault(t => t.TaskID == task.TaskID);
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
 
-            if (taskToUpdate == null)
-                return;
+            string query = @"
+            UPDATE Task
+            SET EmployeeID = @EmployeeID,
+            IsAvailableForAssignment = @IsAvailableForAssignment
+            WHERE TaskID = @TaskID";
 
-            taskToUpdate.EmployeeID = task.EmployeeID;
-            taskToUpdate.AssignedEmployee = task.AssignedEmployee;
-            taskToUpdate.IsAvailableForAssignment = task.IsAvailableForAssignment;
+            using SqlCommand command = new SqlCommand(query, connection);
+
+            command.Parameters.AddWithValue("@EmployeeID", task.EmployeeID);
+            command.Parameters.AddWithValue("@IsAvailableForAssignment", task.IsAvailableForAssignment);
+            command.Parameters.AddWithValue("@TaskID", task.TaskID);
+
+            command.ExecuteNonQuery();
         }
+
+        public List<WorkTask> GetTasksByEmployee(int employeeId)
+        {
+            List<WorkTask> tasks = new List<WorkTask>();
+
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = @"
+            SELECT TaskID, Title, Description, Deadline, Category, Priority, Status, IsOneTime, IsAvailableForAssignment, EmployeeID
+            FROM [Task]
+            WHERE EmployeeID = @EmployeeID";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@EmployeeID", employeeId);
+
+            using SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                tasks.Add(new WorkTask
+                {
+                    TaskID = (int)reader["TaskID"],
+                    Title = reader["Title"].ToString() ?? "",
+                    Description = reader["Description"].ToString() ?? "",
+                    Deadline = (DateTime)reader["Deadline"],
+                    Category = (Category)(int)reader["Category"],
+                    Priority = (Priority)(int)reader["Priority"],
+                    Status = (Status)(int)reader["Status"],
+                    IsOneTime = (bool)reader["IsOneTime"],
+                    IsAvailableForAssignment = (bool)reader["IsAvailableForAssignment"],
+                    EmployeeID = reader["EmployeeID"] as int?
+                });
+            }
+
+            return tasks;
+        }
+
+        public void UpdateTaskStatus(WorkTask task)
+        {
+            using SqlConnection connection = new SqlConnection(_connectionString);
+            connection.Open();
+
+            string query = "UPDATE [Task] SET Status = @Status WHERE TaskID = @TaskID";
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@Status", (int)task.Status);
+            command.Parameters.AddWithValue("@TaskID", task.TaskID);
+
+            command.ExecuteNonQuery();
+        }
+
     }
 }

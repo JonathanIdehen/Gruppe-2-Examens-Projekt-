@@ -28,5 +28,9 @@
             <views:CreateEmployeeView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModels:MyTasksViewModel}">
+            <views:MyTasksView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

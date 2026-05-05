@@ -60,5 +60,15 @@ namespace MaxiZoo.Services
         {
             return _taskRepository.GetAvailableTasks();
         }
+
+        public List<WorkTask> GetTasksByEmployee(int employeeId)
+        {
+            return _taskRepository.GetTasksByEmployee(employeeId);
+        }
+
+        public void UpdateTaskStatus(WorkTask task)
+        {
+            _taskRepository.UpdateTaskStatus(task);
+        }
     }
 }

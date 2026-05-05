@@ -45,6 +45,7 @@ Margin="0,0,0,10"/>
             <TextBlock Text="Vælg medarbejder"/>
             <ComboBox ItemsSource="{Binding Employees}"
 SelectedItem="{Binding SelectedEmployee}"
+
 DisplayMemberPath="Name"
 Margin="0,0,0,20"/>
 
