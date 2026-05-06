@@ -9,7 +9,7 @@ namespace MaxiZoo.Persistence
         private readonly TaskStore _taskStore;
         private readonly string _connectionString =
         "Server=localhost\\SQLEXPRESS;Database=MaxiZoo;Trusted_Connection=True;TrustServerCertificate=true;";
-
+        
         public TaskRepository(TaskStore taskStore)
         {
             _taskStore = taskStore;
