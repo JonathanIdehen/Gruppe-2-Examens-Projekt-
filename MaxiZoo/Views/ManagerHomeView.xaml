@@ -4,30 +4,35 @@
 
     <StackPanel Margin="20">
         <TextBlock Text="Chef/Souschef side" FontSize="20" Margin="0,0,0,20"/>
-        
+
         <Button Content="Opret opgave" 
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToCreateTaskCommand}"/>
-        
+
         <Button Content="Overblik over alle opgaver" 
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToTaskOverviewCommand}"/>
-        
+
         <Button Content="Tildel opgave" 
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToAssignTaskCommand}"/>
-        
+
         <Button Content="Godkend opgave" 
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToApproveTaskCommand}"/>
-        
+
         <Button Content="Opret medarbejder" 
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToCreateEmployeeCommand}"/>
-        
+
         <Button Content="Gendan opgave" 
                 Margin="0,0,0,10"
                 Command="{Binding NavigateToRestoreTaskCommand}"/>
-        
+
+        <Button Content="Tilbage"
+                Command="{Binding NavigateBackCommand}"
+                Width="77"
+                Height="21"/>
+
     </StackPanel>
 </UserControl>
