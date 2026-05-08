@@ -20,6 +20,7 @@ namespace MaxiZoo.ViewModels
         public ICommand NavigateToApproveTaskCommand { get; }
         public ICommand NavigateToRestoreTaskCommand { get; }
         public ICommand NavigateToTaskOverviewCommand { get; }
+        public ICommand NavigateBackCommand { get; }
 
         public ManagerHomeViewModel(
             NavigationStore navigationStore,
@@ -96,6 +97,17 @@ namespace MaxiZoo.ViewModels
                      _taskService,
                      _employeeRepository,
                      _employeeService)));
+
+            NavigateBackCommand = new NavigateCommand(
+               _navigationService,
+               () => new StartViewModel(
+               new UserIdentificationService(_employeeRepository),
+               new CurrentUserStore(),
+                    _navigationStore,
+                    _taskService,
+                    _employeeRepository,
+                    _employeeService,
+                    _navigationService));
         }
 
     }
