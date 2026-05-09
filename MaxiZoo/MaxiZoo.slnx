@@ -1,3 +1,4 @@
 <Solution>
+  <Project Path="../MaxiZoo.Tests/MaxiZoo.Tests.csproj" Id="72b060c0-e824-4f11-ba34-bbefc1faa175" />
   <Project Path="MaxiZoo.csproj" />
 </Solution>
