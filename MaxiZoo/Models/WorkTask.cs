@@ -7,11 +7,12 @@ namespace MaxiZoo.Models
 
     public enum Category
     {
-        Cleaning,
-        Restockning,
-        Cashier,
-        OrderingProducts,
-        
+        Rengøring,
+        Opfyldning,
+        Kasseområde,
+        Bestilling,
+        KampagneOpsætning,
+        Andet
     }
 
     public enum Priority
@@ -23,11 +24,11 @@ namespace MaxiZoo.Models
 
     public enum Status
     {
-        NotStarted,
-        InProgress,
-        Done,
-        NotApproved,
-        Completed
+        Afventer,
+        Igang,
+        Færdig,
+        IkkeGodkendt,
+        Udført
     }
 
     public class WorkTask

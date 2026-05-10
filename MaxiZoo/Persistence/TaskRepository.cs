@@ -157,7 +157,7 @@ namespace MaxiZoo.Persistence
             WHERE Status = @Status";
 
             using SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Status", (int)Status.Completed);
+            command.Parameters.AddWithValue("@Status", (int)Status.Udført);
 
             using SqlDataReader reader = command.ExecuteReader();
 
@@ -194,7 +194,7 @@ namespace MaxiZoo.Persistence
             WHERE Status = @Status";
 
             using SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Status", (int)Status.NotApproved);
+            command.Parameters.AddWithValue("@Status", (int)Status.IkkeGodkendt);
 
             using SqlDataReader reader = command.ExecuteReader();
 
@@ -231,7 +231,7 @@ namespace MaxiZoo.Persistence
             WHERE TaskID = @TaskID";
 
             using SqlCommand command = new SqlCommand(query, connection);
-            command.Parameters.AddWithValue("@Status", (int)Status.NotStarted);
+            command.Parameters.AddWithValue("@Status", (int)Status.Afventer);
             command.Parameters.AddWithValue("@TaskID", task.TaskID);
 
             command.ExecuteNonQuery();

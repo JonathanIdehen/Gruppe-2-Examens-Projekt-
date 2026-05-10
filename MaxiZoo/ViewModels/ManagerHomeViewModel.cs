@@ -49,10 +49,10 @@ namespace MaxiZoo.ViewModels
                    () =>
                    {
                       var vm = new AssignTaskViewModel(
-                          _taskService,
-                          _employeeRepository,
+                          _taskService,                        
                           _navigationService,
                           _navigationStore,
+                          _employeeRepository,
                           _employeeService);
 
         vm.RefreshData();
@@ -101,8 +101,8 @@ namespace MaxiZoo.ViewModels
             NavigateBackCommand = new NavigateCommand(
                _navigationService,
                () => new StartViewModel(
-               new UserIdentificationService(_employeeRepository),
-               new CurrentUserStore(),
+                     new UserIdentificationService(_employeeRepository),
+                     new CurrentUserStore(),
                     _navigationStore,
                     _taskService,
                     _employeeRepository,

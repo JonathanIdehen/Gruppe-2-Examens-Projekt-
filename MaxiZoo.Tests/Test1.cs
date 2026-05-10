@@ -37,7 +37,7 @@ namespace MaxiZoo.Tests
             task.Title,
             task.Description,
             DateTime.Now,
-            Category.Cleaning,
+            Category.Rengøring,
             Priority.Mellem,
             task.IsOneTime);
 
@@ -63,7 +63,7 @@ namespace MaxiZoo.Tests
              task.Title,
              task.Description,
              DateTime.Now,
-             Category.Cleaning,
+             Category.Rengøring,
              Priority.Mellem,
              task.IsOneTime);
 
