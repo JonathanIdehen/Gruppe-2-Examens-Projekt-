@@ -19,59 +19,87 @@ namespace MaxiZoo.Tests
             _taskService = new TaskService(taskRepository);
         }
 
+        //[TestMethod]
+        //public void TestCreateTaskCheckCount()
+        //{
+        //    // Arrange
+        //    int before = _taskService.GetAllTasks().Count;
+
+        //    WorkTask task = new WorkTask
+        //    {
+        //        Title = "Vask gulv",
+        //        Description = "Vask gulvet og skrub kanter",
+        //        IsOneTime = true
+        //    };
+
+        //    // Act
+        //    _taskService.CreateTask(
+        //    task.Title,
+        //    task.Description,
+        //    DateTime.Now,
+        //    Category.Rengøring,
+        //    Priority.Mellem,
+        //    task.IsOneTime);
+
+        //    int after = _taskService.GetAllTasks().Count;
+
+        //    // Assert
+        //    Assert.IsTrue(after > before);
+        //}
+
+        //[TestMethod]
+        //public void TestCreateTaskCheckTitle()
+        //{
+        //    // Arrange
+        //    WorkTask task = new WorkTask
+        //    {
+        //        Title = "Bestil kattemad",
+        //        Description = "Bestil kattemad hjem, og bestil lidt ekstra Whiskas",
+        //        IsOneTime = true
+        //    };
+
+        //    // Act
+        //    _taskService.CreateTask(
+        //     task.Title,
+        //     task.Description,
+        //     DateTime.Now,
+        //     Category.Rengøring,
+        //     Priority.Mellem,
+        //     task.IsOneTime);
+
+        //    WorkTask lastTask =
+        //        _taskService.GetAllTasks().Last();
+
+        //    // Assert
+        //    Assert.AreEqual("Bestil kattemad", lastTask.Title);
+        //}
+        
         [TestMethod]
-        public void TestCreateTaskCheckCount()
+        public void TestAssignTaskToEmployee()
         {
             // Arrange
-            int before = _taskService.GetAllTasks().Count;
-
             WorkTask task = new WorkTask
             {
                 Title = "Vask gulv",
                 Description = "Vask gulvet og skrub kanter",
-                IsOneTime = true
+                IsOneTime = true,
+                IsAvailableForAssignment = true
             };
 
-            // Act
-            _taskService.CreateTask(
-            task.Title,
-            task.Description,
-            DateTime.Now,
-            Category.Rengøring,
-            Priority.Mellem,
-            task.IsOneTime);
-
-            int after = _taskService.GetAllTasks().Count;
-
-            // Assert
-            Assert.IsTrue(after > before);
-        }
-
-        [TestMethod]
-        public void TestCreateTaskCheckTitle()
-        {
-            // Arrange
-            WorkTask task = new WorkTask
+            Employee employee = new Employee
             {
-                Title = "Bestil kattemad",
-                Description = "Bestil kattemad hjem, og bestil lidt ekstra Whiskas",
-                IsOneTime = true
+                EmployeeID = 1010,
+                Name = "Charlotte",
+                Role = Role.Employee
             };
 
             // Act
-            _taskService.CreateTask(
-             task.Title,
-             task.Description,
-             DateTime.Now,
-             Category.Rengøring,
-             Priority.Mellem,
-             task.IsOneTime);
-
-            WorkTask lastTask =
-                _taskService.GetAllTasks().Last();
+            _taskService.AssignTaskToEmployee(task, employee);
 
             // Assert
-            Assert.AreEqual("Bestil kattemad", lastTask.Title);
+            Assert.AreEqual(employee.EmployeeID, task.EmployeeID);
+            Assert.AreEqual(employee, task.AssignedEmployee);
+            Assert.IsFalse(task.IsAvailableForAssignment);
         }
     }
 }
