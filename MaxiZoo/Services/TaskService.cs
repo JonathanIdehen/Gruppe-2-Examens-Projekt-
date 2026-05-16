@@ -45,7 +45,10 @@ namespace MaxiZoo.Services
 
         public List<WorkTask> GetAvailableTasks() 
         {
-            return _taskRepository.GetAvailableTasks();
+            return _taskRepository
+                .GetAllTasks()
+                .Where(task => task.IsAvailableForAssignment)       
+                .ToList();
         }
 
         public void AssignTaskToEmployee(WorkTask task, Employee employee)
