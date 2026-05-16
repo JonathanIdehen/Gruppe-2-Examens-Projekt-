@@ -16,7 +16,6 @@ namespace MaxiZoo.Stores
                 CurrentViewModelChanged?.Invoke();
             }
         }
-
         public event Action? CurrentViewModelChanged;
     }
 }
