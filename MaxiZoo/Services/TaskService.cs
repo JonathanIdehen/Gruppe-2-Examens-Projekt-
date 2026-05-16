@@ -35,7 +35,7 @@ namespace MaxiZoo.Services
             Deadline = deadline,
             Category = category,
             Priority = priority,
-            Status = Status.NotStarted,
+            Status = Status.Afventer,
             IsOneTime = isOneTime,
             IsAvailableForAssignment = true
         };
@@ -83,13 +83,13 @@ namespace MaxiZoo.Services
 
         public void ApproveTask(WorkTask task)
         {
-            task.Status = Status.Done;
+            task.Status = Status.Færdig;
             _taskRepository.UpdateTaskStatus(task);
         }
 
         public void RejectTask(WorkTask task)
         {
-            task.Status = Status.NotApproved;
+            task.Status = Status.IkkeGodkendt;
             _taskRepository.UpdateTaskStatus(task);
         }
        
@@ -100,7 +100,7 @@ namespace MaxiZoo.Services
 
         public void RestoreTask(WorkTask task)
         {
-            task.Status = Status.NotStarted;
+            task.Status = Status.Afventer;
             task.EmployeeID = null;
             task.AssignedEmployee = null;
             task.IsAvailableForAssignment = true;

@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace MaxiZoo.Commands
 {
-    public class AssignTaskCommand : ICommand 
+    public class AssignTaskCommand : CommandBase
     {
         private readonly AssignTaskViewModel _viewModel; // Reference to the ViewModel to access selected tasks and employee
         private readonly TaskService _taskService; // Reference to the TaskService to perform the assignment
@@ -18,14 +18,14 @@ namespace MaxiZoo.Commands
             _viewModel = viewModel;
             _taskService = taskService;
         }
-       
-        public bool CanExecute(object? parameter)
+
+        public override bool CanExecute(object? parameter)
         {
             return _viewModel.SelectedTask != null &&
                    _viewModel.SelectedEmployee != null;
         }
 
-        public void Execute(object? parameter)
+        public override void Execute(object? parameter)
         {
             if (_viewModel.SelectedTask == null || _viewModel.SelectedEmployee == null)
             {
@@ -41,11 +41,7 @@ namespace MaxiZoo.Commands
             _viewModel.RefreshData();
         }
 
-        public event EventHandler? CanExecuteChanged;
 
-        public void RaiseCanExecuteChanged()
-        {
-            CanExecuteChanged?.Invoke(this, EventArgs.Empty);
-        }
+        
     }
 }

@@ -31,5 +31,5 @@ namespace MaxiZoo.Services
         {
             return _employeeRepository.GetAllEmployees();
         }
-    }
+    } 
 }

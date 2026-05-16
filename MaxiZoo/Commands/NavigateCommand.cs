@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace MaxiZoo.Commands
 {
-    public class NavigateCommand : ICommand
+    public class NavigateCommand : CommandBase
     {
         private readonly NavigationService _navigationService;
         private readonly Func<BaseViewModel> _createViewModel;
@@ -16,13 +16,13 @@ namespace MaxiZoo.Commands
             _createViewModel = createViewModel;
         }
 
-        public bool CanExecute(object? parameter) => true;
+        public override bool CanExecute(object? parameter) => true;
 
-        public void Execute(object? parameter)
+        public override void Execute(object? parameter)
         {
             _navigationService.NavigateTo(_createViewModel());
         }
 
-        public event EventHandler? CanExecuteChanged;
+       
     }
 }

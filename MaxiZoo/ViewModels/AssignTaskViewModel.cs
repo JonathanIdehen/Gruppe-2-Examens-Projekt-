@@ -14,7 +14,7 @@ namespace MaxiZoo.ViewModels
     public class AssignTaskViewModel : BaseViewModel
     {
         private readonly TaskService _taskService; 
-        private readonly EmployeeRepository _employeeRepository;
+        private readonly EmployeeService _employeeService;
 
         public List<WorkTask> AvailableTasks { get; set; }
         public List<Employee> Employees { get; set; }
@@ -51,7 +51,7 @@ namespace MaxiZoo.ViewModels
         public void RefreshData()
         {
             AvailableTasks = _taskService.GetAvailableTasks();
-            Employees = _employeeRepository.GetAllEmployees();
+            Employees = _employeeService.GetAllEmployees();
 
             OnPropertyChanged(nameof(AvailableTasks));
             OnPropertyChanged(nameof(Employees));
@@ -65,17 +65,17 @@ namespace MaxiZoo.ViewModels
         public ICommand NavigateBackCommand { get; }
 
         public AssignTaskViewModel(
-               TaskService taskService,
-               EmployeeRepository employeeRepository,
+               TaskService taskService,             
                NavigationService navigationService,
                NavigationStore navigationStore,
+               EmployeeRepository employeeRepository,
                EmployeeService employeeService)
         {
             _taskService = taskService;
-            _employeeRepository = employeeRepository;
+            _employeeService = employeeService;
 
             AvailableTasks = _taskService.GetAvailableTasks();
-            Employees = _employeeRepository.GetAllEmployees();
+            Employees = _employeeService.GetAllEmployees();
 
             AssignTaskCommand = new AssignTaskCommand(this, _taskService);
 
